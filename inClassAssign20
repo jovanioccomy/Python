@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr  2 17:09:09 2018
+
+@author: JovaniSenpai
+"""
+
+import numpy as np
+
+#rand(100) creates 100 element 
+vectorrandAngles = np.random.rand(100)*2*np.pi
+
+#zeros needs the matrix dimensions, 2x100
+rotVec = np.zeros([2,100])
+

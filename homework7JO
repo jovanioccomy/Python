@@ -1,0 +1,48 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr 12 09:10:08 2018
+
+@author: JovaniSenpai
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+numstamp = 2000
+
+e0 = 1
+phi_c = 0
+phi_a = 0
+fC = 15
+a = 0.5
+fA = 2
+
+t=np.linspace(0,1,numstamp)
+eCt = e0*np.cos(2*np.pi*fC*t+phi_c)
+
+xT = a*np.sin(2*np.pi*fA*t+phi_a)
+
+eT = eCt*(1-(a/2))*(1-(xT/a))
+
+plt.figure()
+plt.plot(t,eCt)
+plt.plot(t,xT)
+plt.plot(t,eT)
+plt.xlabel('time(s)', fontsize = 14, fontweight = 'bold')
+plt.ylabel('amplitude', fontsize = 14, fontweight = 'bold')
+plt.legend(['carrier','data','total'])
+plt.grid()
+plt.gca().tick_params(axis='both',labelsize = 14)
+
+fVeq = [1,2,3,4]
+plt.figure()
+for y in range(4):
+    xT1 = a*np.sin(2*np.pi*fVeq[y]*t+phi_a)
+    eT1 = eCt*(1-a/2*(1-(xT1/a))
+    plt.plot(t,eT1)
+plt.xlabel('time(s)', fontsize = 14, fontweight = 'bold')
+plt.ylabel('amplitude', fontsize = 14, fontweight = 'bold')
+plt.legend(['1','2','3','4'])
+plt.gca().tick_params(axis='both',labelsize = 14)
+plt.grid()   

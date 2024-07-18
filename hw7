@@ -1,0 +1,85 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr 12 09:50:55 2018
+
+@author: JovaniSenpai
+"""
+
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Apr 11 16:27:12 2018
+
+@author: JovaniSenpai
+"""
+#import all libraries in order to solve for equations
+import numpy as np
+import matplotlib.pyplot as plt
+
+#set all variables
+#time vector of 2000 samples when 0<= T <= 1
+numstamp = 2000; 
+#the carrier amplitude
+e0 = 1
+#constant phase terms
+phi_c = 0
+phi_a = 0
+#frequency of the carrier 
+fC = 15
+#modulation frequency
+fA = 2
+#modulation term variable 
+a = 0.5
+
+#t variable
+t = np.linspace(0,1,numstamp) 
+
+#a carrier field's amplitude equation:
+eCt = e0*np.cos(2*np.pi*fC*t + phi_c)
+
+#a data signal that can be transmitted's equation:
+xT = a*np.sin(2*np.pi*fA*t + phi_a)
+ 
+#total field (e*T) constructed through amplitude of the waveform 
+eT = eCt*(1 -(a/2 ))*(1-(xT/a))
+
+#plot all data on a single figure
+plt.figure()
+#plot the amplitude modulated signal eCt
+plt.plot(t,eCt)
+#plot the carrier signal xT
+plt.plot(t,xT)
+#plot eT
+plt.plot(t,eT)
+plt.legend(['carrier','dt','total'])
+#label axes with size 14 bold font, set legend to identify plots and make sure grid is on and give the grid a title
+plt.xlabel('time(s)',fontsize = 14, fontweight = 'bold')
+#plot the signal along the ylabel
+plt.ylabel('signal',fontsize = 14, fontweight = 'bold')
+plt.grid()
+#set gca and label size
+plt.gca().tick_params(axis='both',labelsize=14)
+
+#part II, for loop
+#four different modulation frequencies fA: 1,2,3,4
+f = [1,2,3,4]
+#plot figure 2 
+plt.figure()
+#on a seperate figure, plot all data above, using a for loop. 
+for y in range(4):
+    #plot the data signal xT when its modulation frequency fA = 2 using variables xT1 and eT1
+    xT1 = a*np.sin(2*np.pi*f[y]*t + phi_a)
+    eT1 = eCt*(1 -(a/2))*(1-(xT1/a))
+    plt.plot(t,eT1)
+#label axes with size 14 bold font, set legend to identify plots and make sure grid is on and give the grid a title    
+plt.legend(['1','2','3','4'])
+plt.xlabel('time(s)',fontsize = 14, fontweight = 'bold')
+plt.ylabel('amplitude',fontsize = 14, fontweight = 'bold')
+#set gca and label size
+plt.grid() 
+plt.gca().tick_params(axis='both',labelsize=14)  
+    
+    
+
+ 

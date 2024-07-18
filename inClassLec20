@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr  2 16:27:44 2018
+
+@author: JovaniSenpai
+"""
+#import python's numerical/matrices library
+import numpy as np
+
+#rand(100) creates 100 element vector
+randAngles = np.random.rand(100)*2*np.pi
+
+#zeros needs the matrix dimensions, 2x100
+rotVec = np.zeros([2,100])
+
+#this is a starting vetor
+vec = np.r_['0,2',[1],[0]]
+
+for ind in np.r_[0:np.size(randAngles)]:
+    np.size(randAngles) 
+    
+#grab the current random angle
+theta = randAngles[ind]
+
+#construct the rotation matrix for this angle
+Rz = np.r_[ '0,2',[np.cos(theta),-np.sin(theta)],
+                   [np.sin(theta),np.cos(theta)] ]
+#construct the rotation matrix for this 
+angleRz = np.r_[ '0,2',[np.cos(theta),-np.sin(theta)],[np.sin(theta),np.cos(theta)] ]
+
+#assign ind's column with the rotated x,y vector
+rotVec[:,ind] = np.matmul(Rz,vec).T
+
+#grab the mean values
+meanX = np.mean(rotVec[0,:])
+meanY = np.mean(rotVec[1,:])
+
+#use element-wise AND (&) to determine num in each quadrant
+numQuad1 = np.sum((rotVec[0,:] > 0) & (rotVec[1,:] > 0))
+numQuad2 = np.sum((rotVec[0,:] <= 0) & (rotVec[1,:] > 0))
+numQuad3 = np.sum((rotVec[0,:] <= 0) & (rotVec[1,:] <= 0))
+numQuad4 = np.sum((rotVec[0,:] > 0) & (rotVec[1,:] <= 0))
